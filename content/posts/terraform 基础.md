@@ -1,4 +1,4 @@
-i+++
++++
 date = '2026-09-03T12:37:52+08:00'
 draft = false
 title = 'Terrafrom 基础篇'
@@ -54,7 +54,7 @@ Terraform 会跟踪基础设施的当前状态，包括，组件配置，资源�
 
 Terrafrom 的配置文件都是以`.tf`为后缀，支持 HCL 和 JSON 两种格式。当前目录下，所有以`tf`结尾的文件最终都会被识别并加载。一个最简单的 Terraform 目录结构如下：
 
-```
+```bash
 project/
 ├── main.tf            # 主要资源定义
 ├── variables.tf       # 变量声明
@@ -77,7 +77,7 @@ project/
 
 用户想要操作某个云厂商的资源，必须先在 terraform 模块中声明，并配置 provider 的相应参数：
 
-```
+```hcl
 terraform {
   required_version = "1.5.6"
 
@@ -103,7 +103,7 @@ provider "alicloud" {
 - 资源名称必须以字母和下划线开头，只能包含数字，字母，下划线和破折号。
 - 资源参数之间可以相互引用参数，格式：`<RESOURCE TYPE>.<NAME>.<ATTRIBUTE>`
 
-```
+```hcl
 resource "alicloud_vpc" "vpc01" {
   vpc_name   = "terraform-example"
   cidr_block = "172.16.0.0/12"
@@ -121,7 +121,7 @@ resource "alicloud_vswitch" "vsw01" {
 
 terraform 支持自定义环境变量：
 
-```
+```hcl
 variable "alicloud_region" {
   description = "阿里云 region"
   type        = string
@@ -137,7 +137,7 @@ variable "vpc_cidr" {
 
 除了直接在文件中定义默认值，terraform 支持从系统环境变量中来读取变量值，所有以 TF_VAR 开头的环境变量都会被 terraform 当做变量的值来使用，例如：
 
-```
+```bash
 export TF_VAR_vpc_cidr="172.16.0.0/16"
 export TF_VAR_alicloud_region="cn-shanghai"
 ```
