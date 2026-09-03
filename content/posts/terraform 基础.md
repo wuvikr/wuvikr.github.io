@@ -2,6 +2,11 @@
 date = '2026-09-03T12:37:52+08:00'
 draft = false
 title = 'Terrafrom 基础篇'
+categories:
+  - Terraform
+tags:
+  - IaC
+  - 基础设施
 +++
 
 # 1. 简介
