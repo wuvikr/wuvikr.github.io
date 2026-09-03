@@ -1,0 +1,18 @@
+# Hugo 构建产物（这些由 GitHub Actions 自动生成，无需提交）
+/public/
+/resources/
+/_gen/
+/assets/jsconfig.json
+
+# 编译好的 Hugo 可执行文件
+hugo.exe
+hugo
+
+# 系统和编辑器文件
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+
