@@ -3,3 +3,9 @@ locale = 'en-us'
 title = "Wuvikr's Blog"
 theme = "PaperMod"
 
+# 全局参数
+[params]
+  # 文章显示目录
+  ShowToc = true
+  # 目录默认展开
+  TocOpen = true
