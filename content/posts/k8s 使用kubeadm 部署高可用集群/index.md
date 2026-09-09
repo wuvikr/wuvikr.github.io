@@ -1,7 +1,7 @@
 +++
 date = '2026-09-09T10:54:51+08:00'
-draft = true
-title = '使用kubeadm 部署高可用集群'
+draft = false
+title = '使用kubeadm 部署高可用k8s集群'
 categories = ['Kubernetes']
 tags = ['K8S', '集群部署','Kube-vip','Kubeadm']
 +++
