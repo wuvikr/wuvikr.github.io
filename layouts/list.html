@@ -88,7 +88,7 @@
   <footer class="entry-footer">
     {{- partial "post_meta.html" . -}}
     {{- if or (.GetTerms "categories") (.GetTerms "tags") }}
-    <ul class="post-tags">
+    <ul class="post-tags" style="position: relative; z-index: 2;">
       {{- range (.GetTerms "categories") }}
       <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
       {{- end }}
