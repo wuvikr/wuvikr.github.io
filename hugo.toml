@@ -9,10 +9,5 @@ theme = "PaperMod"
   ShowToc = true
   # 目录默认展开
   TocOpen = true
-
-[params.analytics]
-  [params.analytics.umami]
-    enable = true
-    scriptUrl = "https://cloud.umami.is/script.js"
-    websiteId = "01c1c49a-5929-4c1b-99cc-3d7ae8a072dc"
-
+  # 文章阅读量统计
+  showReadingCount = true
