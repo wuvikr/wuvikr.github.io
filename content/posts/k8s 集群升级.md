@@ -1,7 +1,7 @@
 +++
 date = '2026-09-09T14:26:14+08:00'
 draft = false
-title = 'K8s 集群升级'
+title = 'k8s 集群升级'
 categories = ['Kubernetes']
 tags = ['K8S', '集群升级']
 +++
