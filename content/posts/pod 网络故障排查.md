@@ -298,12 +298,7 @@ kubectl describe node <node-name> | grep PodCIDR
 
 **现象：Pod 间通过 Service 名称或 ClusterIP 访问不通**
 K8s 中 Pod 间通信通常不直接使用 Pod IP（因为 Pod IP 不稳定），而是通过 Service 进行服务发现。流量路径为：
-
-```
-Pod A → ClusterIP:ServicePort → kube-proxy (iptables/IPVS) → EndpointIP:ContainerPort → Pod B
-```
-
-
+`Pod A → ClusterIP:ServicePort → kube-proxy (iptables/IPVS) → EndpointIP:ContainerPort → Pod B`
 
 ## 5.1 Service 是否存在？
 
@@ -447,7 +442,7 @@ kubectl exec -it <pod-name> -- cat /etc/resolv.conf
 
 正常输出应类似：
 
-```
+```bash
 nameserver 10.96.0.10        # kube-dns Service 的 ClusterIP
 search default.svc.cluster.local svc.cluster.local cluster.local
 options ndots:5
@@ -660,7 +655,7 @@ Overlay 网络（如 VXLAN）会在原始包上额外封装头部（通常 50 �
 
 # 10. 排查思路总结
 
-```
+```plaintext
 ┌─────────────────────────────────────────────────────────┐
 │                   网络排查黄金路径                         │
 │                                                         │
