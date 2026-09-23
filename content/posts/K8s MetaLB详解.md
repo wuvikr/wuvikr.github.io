@@ -47,24 +47,25 @@ MetalLB 支持两种流量转发模式，适配不同机房网络环境，是部
 **优缺点**：部署简单、零门槛；单IP同一时间仅单个节点承接流量，无法实现节点级并发负载，集群规模大时存在性能瓶颈。
 
 ### 1.3.2 BGP路由模式
-基于BGP路由协议，生产大型集群首选，与机房物理路由器对接，需要路由器支持BGP协议。
+基于 BGP 路由协议，生产大型集群首选，与机房物理路由器对接，需要路由器支持 BGP 协议。
 
 **工作逻辑**：MetalLB Speaker 节点与机房路由器建立 BGP 邻居，将 Service 外部 IP 路由发布至全网，路由器自动将外部流量分发至集群多个节点，实现真正意义的多节点负载均衡。
 
 **优缺点**：支持多节点并发负载、高可用、性能更强；需要网络设备配合，配置复杂度更高。
 
 ## 1.4 适用与不适用场景
-适用场景：本地机房裸金属K8s、虚拟机部署的私有K8s、边缘离线K8s集群，需要使用LoadBalancer暴露业务的场景。
-不适用场景：公有云K8s集群（已有厂商原生LoadBalancer）、仅需Ingress暴露HTTP业务的简单场景（可按需搭配使用）。
+**适用场景**：本地机房裸金属 K8s、虚拟机部署的私有 K8s、边缘离线 K8s 集群，需要使用 LoadBalancer 暴露业务的场景。
+
+**不适用场景**：公有云 K8s 集群（已有厂商原生LoadBalancer）、仅需 Ingress 暴露 HTTP 业务的简单场景（可按需搭配使用）。
 
 # 2. 安装部署（生产可用）
 
 本文档部署步骤基于 K8s 1.32 版本，MetalLB 最新稳定版（v0.16.1），提供 YAML 原生部署和Helm 部署两种方式，均为生产常用方案，全程无特殊依赖、可直接落地。
 
-**前置关键条件**：关闭 K8s 原生 IPVS 模式的 ARP 屏蔽（K8s默认开启，会导致MetalLB L2模式失效，必须提前配置）。
+**前置关键条件**：关闭 K8s 原生 IPVS 模式的 ARP 屏蔽（K8s 默认开启，会导致 MetalLB L2模式失效，必须提前配置）。
 
 ## 2.1 集群前置配置（所有节点执行）
-修改kube-proxy配置，开启ARP转发，适配MetalLB。
+修改 kube-proxy 配置，开启 ARP 转发，适配 MetalLB。
 
 ```bash
 # 编辑kube-proxy配置
@@ -83,7 +84,7 @@ kubectl rollout restart daemonset kube-proxy -n kube-system
 
 
 ## 2.2 YAML极简部署（适合所有集群）
-官方原生YAML部署，无第三方依赖，稳定性最高，适合生产基础环境：
+官方原生 YAML 部署，无第三方依赖，稳定性最高，适合生产基础环境：
 
 ```bash
 # 直接应用官方部署清单（自动创建命名空间、控制器、Speaker组件）
@@ -96,7 +97,7 @@ kubectl get pods -n metallb-system -w
 部署完成后，集群会自动创建 metallb-system 命名空间，包含 1 个 Controller Pod、多个 Speaker Pod（节点数与集群节点一致）。
 
 ## 2.3 方式二：Helm部署（适合迭代运维、版本管理）
-Helm部署支持自定义参数、版本升级、配置管理，适合标准化生产集群：
+Helm 部署支持自定义参数、版本升级、配置管理，适合标准化生产集群：
 ```bash
 # 1. 添加MetalLB官方仓库
 helm repo add metallb https://metallb.github.io/metallb
@@ -116,7 +117,7 @@ kubectl get pods -n metallb-system
 ## 2.4 配置IP地址池（核心步骤）
 MetalLB 部署后默认无可用 IP，必须手动配置 IP池，指定可分配给 LoadBalancer Service 的 IP 段（需为机房内网空闲 IP，与集群节点同网段）。
 
-创建IP池配置文件 `metallb-ip-pool.yaml`：
+创建 IP 池配置文件 `metallb-ip-pool.yaml`：
 ```yaml
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -146,7 +147,7 @@ spec:
 ```bash
 kubectl apply -f metallb-ip-pool.yaml
 ```
-配置说明：生产环境建议关闭自动分配，避免IP被临时服务占用，核心业务手动指定IP，保证IP固定不变。
+> **注意**：生产环境建议关闭自动分配，避免 IP 被临时服务占用，核心业务手动指定 IP，保证 IP 固定不变。
 
 ## 2.5 功能验证
 创建测试 LoadBalancer Service，验证IP分配和流量转发：
