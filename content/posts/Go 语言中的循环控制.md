@@ -1,9 +1,9 @@
 +++
 date = '2026-09-23T10:36:31+08:00'
 draft = false
-title = 'Go 语言中的for循环'
+title = 'Go 语言中的循环控制'
 categories = ['编程']
-tags = ['Go', '基础知识', '循环控制']
+tags = ['Go', '基础知识', '流程控制', 'For']
 +++
 
 Go 语言只有一种循环构造方式，即 for 循环（**没有 while 或 do-while**），类似于 C、Java 和 C# 之类的编程语言中的 for 循环。使用分号`;`分隔。。它的基本语法如下：
