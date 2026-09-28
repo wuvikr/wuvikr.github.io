@@ -3,7 +3,7 @@ date = '2026-09-25T10:01:44+08:00'
 draft = false
 title = 'Go 语言中的字符串类型'
 categories = ['编程']
-tags = ['Go', '基础知识', 'String', '变量']
+tags = ['Go', '基础知识', 'String', '类型']
 +++
 
 Go 原生支持字符串类型，关键字`string`用于表示字符串数据类型。
