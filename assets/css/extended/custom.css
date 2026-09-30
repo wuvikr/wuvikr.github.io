@@ -1,0 +1,40 @@
+.alert {
+  padding: 10px 16px;
+  margin: 16px 0;
+  border: 1px solid;
+  border-left-width: 4px;
+  border-radius: 6px;
+}
+.alert-title {
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.alert-title::first-letter {
+  text-transform: uppercase;
+}
+.alert-note {
+  border-color: #0969da;
+  background: rgba(9, 105, 218, 0.08);
+  color: #0969da;
+}
+.alert-tip {
+  border-color: #1a7f37;
+  background: rgba(26, 127, 55, 0.08);
+  color: #1a7f37;
+}
+.alert-important {
+  border-color: #8250df;
+  background: rgba(130, 80, 223, 0.08);
+  color: #8250df;
+}
+.alert-warning {
+  border-color: #9a6700;
+  background: rgba(154, 103, 0, 0.08);
+  color: #9a6700;
+}
+.alert-caution {
+  border-color: #cf222e;
+  background: rgba(207, 34, 46, 0.08);
+  color: #cf222e;
+}
+

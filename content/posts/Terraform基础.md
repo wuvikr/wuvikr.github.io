@@ -1,5 +1,5 @@
 +++
-title = 'Terrafrom 基础篇'
+title = 'Terrafrom 基础知识'
 date = '2026-09-03T12:37:52+08:00'
 draft = false
 categories = ['Terraform']

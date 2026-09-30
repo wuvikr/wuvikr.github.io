@@ -1,0 +1,13 @@
+{{- if eq .Type "alert" }}
+<div class="alert alert-{{ .AlertType }}" role="alert">
+  {{- with .AlertTitle }}
+  <p class="alert-title">{{ . }}</p>
+  {{- end }}
+  {{ .Text }}
+</div>
+{{- else }}
+<blockquote>
+  {{ .Text }}
+</blockquote>
+{{- end }}
+
