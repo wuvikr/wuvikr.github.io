@@ -51,6 +51,26 @@
 {{- partial "home_info.html" . }}
 {{- end }}
 
+{{- if .IsHome }}
+<div class="home-layout">
+  <aside class="home-sidebar">
+    {{- if site.Taxonomies.categories }}
+    <section class="home-categories">
+      <h2 class="home-categories-title">分类</h2>
+      <ul class="category-list">
+        {{- range $name, $taxonomy := site.Taxonomies.categories }}
+        <li>
+          <a href="{{ $taxonomy.Page.RelPermalink }}">{{ $name }}</a>
+          <span class="category-count">{{ $taxonomy.Count }}</span>
+        </li>
+        {{- end }}
+      </ul>
+    </section>
+    {{- end }}
+  </aside>
+  <div class="home-posts">
+{{- end }}
+
 {{- $term := .Data.Term }}
 {{- range $index, $page := $paginator.Pages }}
 
@@ -124,6 +144,11 @@
     {{- end }}
   </nav>
 </footer>
+{{- end }}
+
+{{- if .IsHome }}
+  </div>{{- /* end .home-posts */}}
+</div>{{- /* end .home-layout */}}
 {{- end }}
 
 {{- end }}{{/* end profileMode */}}
