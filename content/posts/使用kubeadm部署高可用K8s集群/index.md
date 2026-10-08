@@ -18,7 +18,7 @@ Kubernetes 高可用架构的核心在于保障 API Server 的访问连续性与
 
 # 1. 环境架构
 
-## 1.1. 角色划分
+## 1.1 角色划分
 
 | 主机名      | IP            | 角色                               |
 | -------- |:-------------:|:--------------------------------:|
@@ -30,7 +30,7 @@ Kubernetes 高可用架构的核心在于保障 API Server 的访问连续性与
 | worker03 | 192.168.69.23 | worker03                         |
 | 虚拟IP     | 10.0.0.100    | kube-vip 提供                      |
 
-## 1.2. 拓扑图
+## 1.2 拓扑图
 
 ![k8s集群架构拓扑](拓扑图.png)
 
@@ -38,7 +38,7 @@ Kubernetes 高可用架构的核心在于保障 API Server 的访问连续性与
 
 # 2. 操作系统初始化
 
-## 2.1. Linux 基础配置
+## 2.1 Linux 基础配置
 
 ```bash
 # 关闭防火墙
@@ -77,7 +77,7 @@ cat >> /etc/security/limits.conf << EOF
 EOF
 ```
 
-## 2.2. 时间同步
+## 2.2 时间同步
 
 ```bash
 # 同步硬件时钟到系统时间（虚拟机环境中可选）
@@ -97,7 +97,7 @@ timedatectl status
 
 > Ubuntu 24.04 内置的 `systemd-timesyncd` 提供轻量级 NTP 客户端功能，支持自动同步、漂移补偿和状态查询。如需更高精度的时间同步（如金融、日志审计场景），建议改用 `chrony` 替代 `systemd-timesyncd`。
 
-## 2.3. ssh 免密登录（可选）
+## 2.3 ssh 免密登录（可选）
 
 ```bash
 # 在 master01 上执行以下操作
@@ -111,7 +111,7 @@ scp -r .ssh worker02:/root/
 scp -r .ssh worker03:/root/
 ```
 
-## 2.4. 安装 ipvs 并加载到内核模块
+## 2.4 安装 ipvs 并加载到内核模块
 
 ```bash
 # 安装必要工具包
@@ -146,7 +146,7 @@ EOF
 systemctl enable --now systemd-modules-load.service
 ```
 
-## 2.5. 修改内核参数
+## 2.5 修改内核参数
 
 ```bash
 # 1. 确保 br_netfilter 模块已加载（bridge-nf-call 参数生效的前提）
@@ -220,7 +220,7 @@ sysctl net.ipv4.ip_forward \
 
 > 切换备用镜像时，只需把下面命令中的 `mirrors.aliyun.com` 换成对应域名，`gpg` 文件通常也有相同的相对路径。
 
-## 3.1. 添加 docker 官方 apt 源
+## 3.1 添加 docker 官方 apt 源
 
 ```bash
 # 安装基础依赖
@@ -241,7 +241,7 @@ echo \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-## 3.2. 更新源并安装 containerd.io
+## 3.2 更新源并安装 containerd.io
 
 ```bash
 # 先清理系统自带的
@@ -249,7 +249,7 @@ apt update
 apt install -y containerd.io
 ```
 
-## 3.3. 安装后配置
+## 3.3 安装后配置
 
 ```bash
 # 生成默认配置文件
@@ -271,9 +271,9 @@ sudo systemctl enable containerd
 
 在所有节点上安装 kubeadm、kubelet 和 kubectl，安装方式参考[官方文档](https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)和[阿里云镜像源](https://developer.aliyun.com/mirror/kubernetes?spm=a2c6h.13651102.0.0.3e221b11cRv43u)。
 
-## 4.1. 添加阿里镜像源仓库
+## 4.1 添加阿里镜像源仓库
 
-```
+```bash
 # 要安装的版本号
 $ K8S_VERSION="v1.32"
 
@@ -293,7 +293,7 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://mirro
 sudo apt update
 ```
 
-## 4.2. 查看版本并安装
+## 4.2 查看版本并安装
 
 ```bash
 # 查看版本
@@ -333,7 +333,7 @@ chown -R etcd:etcd /var/lib/etcd
 chmod 700 /var/lib/etcd
 ```
 
-## 5.2. 安装 cfssl 证书工具
+## 5.2 安装 cfssl 证书工具
 
 [Gitlab 项目地址](https://github.com/cloudflare/cfssl)
 
@@ -406,7 +406,7 @@ cd ~/etcd-certs
   }
   ```
 
-### 5.3.2. 生成 CA 根证书：
+### 5.3.2 生成 CA 根证书：
 
 ```bash
 cfssl gencert -initca etcd-ca-csr.json | cfssljson -bare etcd-ca -
@@ -414,7 +414,7 @@ cfssl gencert -initca etcd-ca-csr.json | cfssljson -bare etcd-ca -
 
 执行后会得到 etcd-ca.pem（根证书）、etcd-ca-key.pem（根私钥）、etcd-ca.csr。
 
-### 5.3.3. 生成 Etcd Server 证书
+### 5.3.3 生成 Etcd Server 证书
 
 - 证书申请文件，etcd-server-csr.json：
 
@@ -458,7 +458,7 @@ cfssl gencert -ca=etcd-ca.pem \
 
 执行后会得到 etcd-server.pem（etcd 服务的证书）、etcd-server-key.pem（etcd 服务的私钥）、etcd-server.csr。
 
-### 5.3.4. 分发证书到其他节点
+### 5.3.4 分发证书到其他节点
 
 ```bash
 # 在每台 etcd 节点上创建证书目录
@@ -477,7 +477,7 @@ done
 
 [Gitlab 项目地址](https://github.com/etcd-io/etcd)
 
-### 5.4.1. 下载&配置
+### 5.4.1 下载&配置
 
 ```bash
 # 替换为实际版本号
@@ -502,7 +502,7 @@ for node in 192.168.69.12 192.168.69.13; do
 done
 ```
 
-### 5.4.2. 编写 etcd 配置文件
+### 5.4.2 编写 etcd 配置文件
 
 在**每台节点**上创建 `/etc/etcd/etcd.conf`，注意修改 `ETCD_NAME` 和 `ETCD_INITIAL_ADVERTISE_PEER_URLS` 中的 IP 为本机 IP。
 
@@ -558,11 +558,11 @@ ETCD_HEARTBEAT_INTERVAL=250
 ETCD_ELECTION_TIMEOUT=5000
 ```
 
-### 5.4.3. 创建 service 文件
+### 5.4.3 创建 service 文件
 
 在**每台节点**上创建 `/etc/systemd/system/etcd.service`：
 
-```
+```bash
 [Unit]
 Description=etcd - A distributed, reliable key-value store
 Documentation=https://etcd.io/docs
@@ -589,18 +589,18 @@ ReadWritePaths=/var/lib/etcd
 WantedBy=multi-user.target
 ```
 
-### 5.4.4. 加载配置并启动服务
+### 5.4.4 加载配置并启动服务
 
 依次在**每台节点**上执行：
 
-```
+```bash
 systemctl daemon-reload
 systemctl enable --now etcd
 ```
 
 **注意**：第一台启动后会等待其他节点加入，属于正常现象
 
-### 5.4.5. 查看集群状态
+### 5.4.5 查看集群状态
 
 使用 etcdctl 命令查看整个集群的状态：
 
@@ -633,7 +633,7 @@ ETCDCTL_API=3 /usr/local/bin/etcdctl --write-out=table \
 
 **注意：以下操作只在 master01 节点执行。**
 
-## 6.1. 生成集群初始化配置文件
+## 6.1 生成集群初始化配置文件
 
 Kubernetes 集群支持两种初始化方式，第一种是直接使用命令行指定参数进行初始化，第二种是使用配置文件的方式加载参数进行初始化，由于需要修改的参数较多，这里选用第二种方式，使用配置文件进行初始化。
 
@@ -749,7 +749,7 @@ scheduler: {}
 192.168.69.11 kubeapi.wuvikr.top kubeapi
 ```
 
-## 6.2. master01 节点初始化
+## 6.2 master01 节点初始化
 
 初始化以后会在`/etc/kubernetes`目录下生成对应的证书和配置文件，之后其他 Master 节点加入 master01 节点即可。
 
@@ -805,17 +805,17 @@ kubeadm reset -f; ipvsadm --clear; rm -rf ~/.kube
 
 上面的命令会清空`/var/lib/etcd`目录，需要手动停止 etcd 服务，并重新加入集群。 
 
-## 6.3. 配置 kubeconfig 文件
+## 6.3 配置 kubeconfig 文件
 
-```
+```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-## 6.4. 查看节点状态
+## 6.4 查看节点状态
 
-```
+```bash
 root@master01:~# kubectl get nodes
 NAME       STATUS     ROLES           AGE   VERSION
 master01   NotReady   control-plane   77s   v1.32.13
@@ -832,7 +832,7 @@ kube-scheduler-master01            1/1     Running   5          2m16s
 
 这里节点未就绪是正常的，因为网络插件还没有部署。
 
-## 6.5. 部署 kube-vip
+## 6.5 部署 kube-vip
 
 [官方部署文档](https://kube-vip.io/docs/installation/)
 
@@ -886,7 +886,7 @@ done
 192.168.69.100 kubeapi.wuvikr.top kubeapi
 ```
 
-## 6.6. 其他 Master 节点加入集群
+## 6.6 其他 Master 节点加入集群
 
 使用提示中的命令，在其他 Master 节点执行：
 
@@ -918,15 +918,15 @@ kubeadm join kubeapi:6443 --token abcdef.0123456789abcdef \
 
 常用的网络插件有 [Calico](https://www.tigera.io/project-calico/) 和 [Flannel](https://github.com/flannel-io/flannel)等，选择任意一种部署即可。（生产环境推荐使用 Calico）。因此这里以 Calico 为例进行安装部署。
 
-## 7.1. 文档参考
+## 7.1 文档参考
 
 1. [官方文档](https://docs.tigera.io/calico/latest/about)
 2. [calicoctl 工具安装文档](https://docs.tigera.io/calico/latest/operations/calicoctl/installCalico)
 3. [GitHub](https://github.com/projectcalico/calico/)
 
-## 7.2. manifest 方式部署
+## 7.2 manifest 方式部署
 
-### 7.2.1. 下载资源清单文件
+### 7.2.1 下载资源清单文件
 
 ```bash
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.32.1/manifests/calico.yaml -O
@@ -935,7 +935,7 @@ curl https://raw.githubusercontent.com/projectcalico/calico/v3.32.1/manifests/ca
 wget https://gh-proxy.org/https://raw.githubusercontent.com/projectcalico/calico/v3.32.1/manifests/calico.yaml
 ```
 
-### 7.2.2. 修改资源清单文件
+### 7.2.2 修改资源清单文件
 
 Calico 默认使用的 pod-cidr是`192.168.0.0/16`，由于我们在初始化集群时，指定的podSubnet为`172.16.0.0/12`，因此需要修改资源清单文件中的 Pod 网络（CALICO_IPV4POOL_CIDR），和初始化时的 Pod 网络保持一致。
 
@@ -971,7 +971,7 @@ sed -r -i '/calico\/kube-controllers:/s#(image: ).*#\1registry.cn-shanghai.aliyu
 
 > 注意：上面的镜像是我个人提前准备好的，放在阿里云的公开仓库中，如果版本一样的话，可直接使用上面的命令进行替换，如果版本不一致，请自行准备镜像。
 
-### 7.2.3. 部署 calico
+### 7.2.3 部署 calico
 
 ```bash
 kubectl apply -f calico.yaml
@@ -982,7 +982,7 @@ kubectl get pod -n kube-system -w
 
 等 calico pod 全部正常运行，再次查看 Node 节点，发现已经变为 Ready 状态：
 
-```
+```bash
 root@master01:~# kubectl get nodes
 NAME                  STATUS   ROLES           AGE     VERSION
 master01.wuvikr.top   Ready    control-plane   27m     v1.32.13
@@ -997,7 +997,7 @@ node03.wuvikr.top     Ready    <none>          6m4s    v1.32.13
 
 # 8. 集群测试
 
-## 8.1. 基础检查
+## 8.1 基础检查
 
 ```bash
 # 1. 节点
@@ -1015,7 +1015,7 @@ curl -sk https://kubeapi:6443/healthz; echo
 # 期望：返回 ok
 ```
 
-## 8.2. 调度 + dns 解析 + 网络测试
+## 8.2 调度 + dns 解析 + 网络测试
 
 起一个最简单的 Pod，看能不能调度、有 IP、能 ping集群内网：
 
@@ -1027,18 +1027,18 @@ kubectl get pods -l app=nginx-test -o wide
 
 # 2. dns 解析测试
 # 期望，正确解析出其 svc 的 ip 地址
+POD=$(kubectl get pod -l app=nginx-test -o jsonpath='{.items[0].metadata.name}')
 kubectl exec $POD -- getent hosts kubernetes.default
 kubectl exec $POD -- nslookup kube-dns.kube-system.svc.cluster.local
 
 # 3. Pod 内部连通性测试
 # 期望：能看到 eth0 IP、能 ping 通外网、能拿到 apiserver 返回的 version JSON。
-POD=$(kubectl get pod -l app=nginx-test -o jsonpath='{.items[0].metadata.name}')
 kubectl exec $POD -- ip addr show eth0
 kubectl exec $POD -- ping -c2 8.8.8.8
 kubectl exec $POD -- curl -sk https://kubernetes.default/version
 ```
 
-## 8.3. HA 测试
+## 8.3 HA 测试
 
 当前的 VIP 应该是在 master01 上，如果 vip 不在 master01 上，可能是因为某些原因 vip 自动发生了漂移，将对应的节点机器停机，查看其他 master 节点还能否正常访问集群。
 
