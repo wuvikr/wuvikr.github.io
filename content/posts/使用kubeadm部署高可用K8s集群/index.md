@@ -1029,7 +1029,7 @@ kubectl get pods -l app=nginx-test -o wide
 # 期望，正确解析出其 svc 的 ip 地址
 POD=$(kubectl get pod -l app=nginx-test -o jsonpath='{.items[0].metadata.name}')
 kubectl exec $POD -- getent hosts kubernetes.default
-kubectl exec $POD -- nslookup kube-dns.kube-system.svc.cluster.local
+kubectl exec $POD -- nslookup coredns.kube-system.svc.cluster.local
 
 # 3. Pod 内部连通性测试
 # 期望：能看到 eth0 IP、能 ping 通外网、能拿到 apiserver 返回的 version JSON。
