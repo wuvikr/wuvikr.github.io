@@ -1,7 +1,7 @@
 +++
 date = '2026-10-03T11:32:44+08:00'
 draft = false
-title = 'Harbor私有镜像仓库安装部署和最佳实践'
+title = 'Harbor 私有镜像仓库安装部署和最佳实践'
 categories = ['Infra']
 tags = ['Harbor', '镜像仓库', '基础设施']
 +++
