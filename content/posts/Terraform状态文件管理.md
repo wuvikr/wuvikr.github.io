@@ -2,8 +2,8 @@
 date = '2026-09-04T16:08:53+08:00'
 draft = false
 title = 'Terraform 状态文件管理'
-categories = ['Terraform']
-tags = ['IaC', '基础设施', 'Cloud', '阿里云']
+categories = ['Iac']
+tags = ['Terraform', 'Infra', 'Cloud', '阿里云']
 +++
 
 # 1. 为什么要把 State 搬到「云上」

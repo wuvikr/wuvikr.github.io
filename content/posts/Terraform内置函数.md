@@ -2,8 +2,8 @@
 date = '2026-09-03T16:06:29+08:00'
 draft = false
 title = 'Terraform 内置函数'
-categories = ['Terraform']
-tags = ['Infra', 'Iac','基础设施']
+categories = ['IaC']
+tags = ['Terraform', 'Infra']
 +++
 
 写 Terraform 配置的时候，你肯定遇到过这些场景：

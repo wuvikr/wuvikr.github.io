@@ -1,9 +1,9 @@
 +++
 date = '2026-09-03T16:24:03+08:00'
 draft = false
-title = '云上存量资源管理'
-categories = ['Terraform']
-tags = ['IaC', '基础设施','Cloud']
+title = 'Terraform 云上存量资源导入'
+categories = ['Iac']
+tags = ['Terraform', 'Infra', 'Cloud']
 +++
 
 # 1. 为什么要"导入"云上资源？
