@@ -21,7 +21,7 @@ GitLab 主要分为两个版本：
 3. **Docker 单容器部署（仅测试用）**：Docker 单容器部署启动快、上手简单，但在数据持久化、备份恢复、版本升级和高可用方面能力有限，仅适合本地测试、功能验证或演示环境，不建议用于生产。
 
 # 3. 安装 GitLab
-官方安装文档地址：https://docs.gitlab.com/omnibus/installation/index.html
+[官方安装文档](https://docs.gitlab.com/omnibus/installation/index.html)
 
 ## 3.1 前置硬件&系统要求
 - 仅支持 linux，最低配置：4核8G（10人以内小团队），生产推荐 8 核 16G 及以上；
@@ -44,8 +44,10 @@ sudo curl --location "https://packages.gitlab.com/install/repositories/gitlab/gi
 sudo apt install gitlab-ce -y
 ```
 ## 3.3 离线包（无网络环境使用）
-官方离线包下载：https://packages.gitlab.com/gitlab/gitlab-ce
-清华源镜像下载：https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/
+[官方离线包下载地址](https://packages.gitlab.com/gitlab/gitlab-ce)
+
+[清华源镜像地址](https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/)
+
 离线安装命令：
 ```bash
 # 下载后进入包目录执行
@@ -197,11 +199,11 @@ GitLab 自带备份工具，配置定时自动备份，防止数据丢失：
 | `tag` | 正式版本快照 | 每次合入 `master` 后打 `v1.0.0` 这类标签 |
 
 **具体流程**：
-1. **开发阶段**：`feature/*` → 合并到 `develop`。
-2. **测试环境准备发版**：从 `develop` 创建 `release/v1.0.0`。这个分支不再加新功能，只做测试、修 bug、改版本号。
-3. **发布灰度或者生产环境**：`release/v1.0.0` 测试通过后，合并到 `master`，在 `master` 上打 `tag v1.0.0`，再合回 `develop`，保证修复同步回去
-4. **紧急修复**：线上出问题，从 `master` 创建 `hotfix/v1.0.1`，修完合并到 `master`，打 `tag v1.0.1`，再合回 `develop`
+1. **开发阶段**：`feature/*` → 合并到 `develop`;
+2. **测试环境准备发版**：从 `develop` 创建 `release/v1.0.0`。这个分支不再加新功能，只做测试、修 bug、改版本号;
+3. **发布灰度或者生产环境**：`release/v1.0.0` 测试通过后，合并到 `master`，在 `master` 上打 `tag v1.0.0`，再合回 `develop`，保证修复同步回去;
+4. **紧急修复**：线上出问题，从 `master` 创建 `hotfix/v1.0.1`，修完合并到 `master`，打 `tag v1.0.1`，再合回 `develop`。
 
 
 > [!NOTE] 备注：
-> 所有代码必须通过 MR 合并，必须经过至少 1 人评审 + 自动化流水线测试通过，全程留存操作日志，代码提交、合并、权限变更全追溯，满足企业合规要求
+> 所有代码必须通过 MR 合并，必须经过至少 1 人评审 + 自动化流水线测试通过，全程留存操作日志，代码提交、合并、权限变更全追溯，满足企业合规要求。
