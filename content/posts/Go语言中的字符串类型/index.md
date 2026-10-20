@@ -2,7 +2,7 @@
 date = '2026-09-25T10:01:44+08:00'
 draft = false
 title = 'Go 语言中的字符串类型'
-categories = ['编程']
+categories = ['Coding']
 tags = ['Go', '基础知识', 'String', '类型']
 +++
 

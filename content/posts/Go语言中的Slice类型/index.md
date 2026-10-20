@@ -2,7 +2,7 @@
 date = '2026-09-30T15:55:22+08:00'
 draft = false
 title = 'Go 语言中的 Slice 类型'
-categories = ['编程']
+categories = ['Coding']
 tags = ['Go', '基础知识', 'Slice', '类型']
 +++
 

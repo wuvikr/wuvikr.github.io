@@ -2,7 +2,7 @@
 date = '2026-09-23T10:36:31+08:00'
 draft = false
 title = 'Go 语言中的循环控制'
-categories = ['编程']
+categories = ['Coding']
 tags = ['Go', '基础知识', '流程控制', 'For']
 +++
 
