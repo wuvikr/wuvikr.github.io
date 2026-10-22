@@ -1,7 +1,7 @@
 +++
 date = '2026-10-20T17:13:23+08:00'
 draft = false
-title = 'JavaScript基础知识'
+title = 'JavaScript 基础知识'
 categories = ['Coding']
 tags = ['JavaScript', '基础知识']
 +++
@@ -553,7 +553,7 @@ IIFE 是“定义后立即执行的函数表达式”，本质是借用函数作
 
 ## 11.1 三种作用域
 
-```
+```plaintext
 ┌─────────────────────────────────┐
 │  全局作用域（Global Scope）       │
 │  ┌───────────────────────┐      │
@@ -1430,19 +1430,19 @@ btn.addEventListener("click", function (event) {
 
 **官方文档**：
 
-- **MDN Web Docs**（最权威的 JS 参考）：<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript>
-- **ECMAScript 规范**：<https://tc39.es/ecma262/>
-- **Microsoft JavaScript 文档**：<https://learn.microsoft.com/zh-cn/javascript/>
+- **MDN Web Docs**（最权威的 JS 参考）：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
+- **ECMAScript 规范**：https://tc39.es/ecma262/
+- **Microsoft JavaScript 文档**：https://learn.microsoft.com/zh-cn/javascript/
 
 **入门教程**：
 
-- **现代 JavaScript 教程（javascript.info）**：<https://zh.javascript.info/>
-- **JavaScript 教程（阮一峰）**：<https://wangdoc.com/javascript/>
-- **ES6 入门教程（阮一峰）**：<https://es6.ruanyifeng.com/>
+- **现代 JavaScript 教程（javascript.info）**：https://zh.javascript.info/
+- **JavaScript 教程（阮一峰）**：https://wangdoc.com/javascript/
+- **ES6 入门教程（阮一峰）**：https://es6.ruanyifeng.com/
 
 **练习平台**：
 
-- **Codewars**：<https://www.codewars.com/>
-- **LeetCode**：<https://leetcode.cn/>
-- **JavaScript30**：<https://javascript30.com/>
+- **Freecodecamp**：https://www.freecodecamp.org/chinese/learn/javascript-v9/
+- **LeetCode**：https://leetcode.cn/
+- **JavaScript30**：https://javascript30.com/
 

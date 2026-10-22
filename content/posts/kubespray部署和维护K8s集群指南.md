@@ -2,8 +2,8 @@
 date = '2026-10-09T11:34:13+08:00'
 draft = false
 title = 'Kubespray 部署和维护 K8s 集群指南'
-categories = ['Kubernetes']
-tags = ['K8s', 'Kubespray','集群部署']
+categories = ['Kubernetes', 'IaC']
+tags = ['K8s', 'Kubespray', '安装部署']
 +++
 
 # 1. 简介

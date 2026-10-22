@@ -1,9 +1,9 @@
 +++
 date = '2026-09-09T10:54:51+08:00'
 draft = false
-title = '使用 kubeadm 部署高可用 K8s 集群'
+title = 'Kubeadm 部署高可用 K8s 集群'
 categories = ['Kubernetes']
-tags = ['K8s', '集群部署', 'Kubeadm']
+tags = ['K8s', 'Kubeadm', '安装部署']
 +++
 
 [kubeadm 安装官方文档](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/)
