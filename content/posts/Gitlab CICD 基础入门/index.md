@@ -1,7 +1,7 @@
 +++
 date = '2026-10-22T10:02:12+08:00'
 draft = false
-title = 'GitLab CICD 入门和实践'
+title = 'GitLab CICD 入门指南'
 categories = ['DevOps']
 tags = ['GitLab', 'CICD', 'Runner', '安装部署']
 +++

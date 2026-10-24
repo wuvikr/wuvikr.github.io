@@ -222,7 +222,7 @@ build-image:
 
 这个 fork 提供公开免费镜像，这是它与 Chainguard fork 的关键区别——后者不公开发布镜像，只提供给 Chainguard 客户，仅给出从源码自行构建的指引。镜像地址有两处，内容一致：
 
-```
+```bash
 # GitHub Container Registry（文档主推）
 ghcr.io/osscontainertools/kaniko:latest
 
