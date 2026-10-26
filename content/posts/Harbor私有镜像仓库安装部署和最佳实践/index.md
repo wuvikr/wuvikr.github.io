@@ -3,7 +3,7 @@ date = '2026-10-03T11:32:44+08:00'
 draft = false
 title = 'Harbor 私有镜像仓库安装部署和最佳实践'
 categories = ['DevOps']
-tags = ['Harbor', '容器', '镜像仓库']
+tags = ['Harbor', '容器镜像', '镜像仓库']
 +++
 
 # 1. 简介
