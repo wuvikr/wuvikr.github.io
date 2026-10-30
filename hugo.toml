@@ -7,7 +7,11 @@ theme = "PaperMod"
 [params]
   # 文章显示目录
   ShowToc = true
-  # 目录默认展开
-  TocOpen = true
   # 文章阅读量统计
   showReadingCount = true
+
+  [params.assets]
+    favicon = "/favicon.ico"
+    favicon16x16 = "/favicon-16x16.png"
+    favicon32x32 = "/favicon-32x32.png"
+
