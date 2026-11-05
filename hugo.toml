@@ -1,5 +1,7 @@
 baseURL = 'https://blogs.wuvikr.top/'
-locale = 'en-us'
+defaultContentLanguage = 'zh'
+locale = 'zh-CN'
+hasCJKLanguage = true
 title = "维克的博客"
 theme = "PaperMod"
 
@@ -7,8 +9,6 @@ theme = "PaperMod"
 [params]
   # 文章显示目录
   ShowToc = true
-  # 文章阅读量统计
-  showReadingCount = true
 
   [params.assets]
     favicon = "/favicon.ico"
